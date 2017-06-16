@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
+import './Note.css'
 
-const Note = ({ note }) => {
-  return (
-    <li>
-      <div className="note">
-        <div className="note-title">
-          {note.title}
+class Note extends Component {
+
+  loadNote(id) {
+
+  }
+
+  render() {
+    return (
+      <li className={this.props.id} onClick={() => this.loadNote(this.props.id)}>
+        <div className="note">
+          <div className="note-title">
+            {this.props.note.title}
+          </div>
+          <div className="note-body">
+            <p>
+              {this.props.note.body}
+            </p>
+          </div>
+          <div className="note-button">
+            <button className="delete" onClick={() => this.props.deleteNote(this.props.note)}>Delete</button>
+          </div>
         </div>
-        <div className="note-body">
-          <p>
-            {note.body}
-          </p>
-        </div>
-      </div>
-    </li>
-  )
+      </li>
+    )
+  }
 }
 
 export default Note

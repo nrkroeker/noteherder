@@ -28,15 +28,22 @@ class NoteForm extends Component {
     )
   }
 
-  handleSubmit = (ev) => {
+  resetForm = (ev) => {
     ev.preventDefault()
+    this.setState({ note: this.blankNote() })
+  }
+
+  resetOnDelete() {
+    // Set up if statement to check if the note it's deleting is active
+    // If it's active, reset form
+    // If not, don't worry about it
     this.setState({ note: this.blankNote() })
   }
 
   render() {
     return (
       <div className="NoteForm">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.resetForm}>
           <p>
             <input
               type="text"
@@ -56,7 +63,7 @@ class NoteForm extends Component {
               value={this.state.note.body}
           ></textarea>
           </p>
-          <button type="submit">Save and Reset</button>
+          <button type="submit">Reset</button>
         </form>
       </div>
     )

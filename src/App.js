@@ -14,6 +14,14 @@ class App extends Component {
     }
   }
 
+  deleteNote = (note) => {
+    const notes = {...this.state.notes}
+    delete(notes[note.id])
+    this.setState({notes})
+
+    this.refs.main.refs.noteForm.resetOnDelete()
+  }
+
   saveNote = (note) => {
     if (!note.id) {
       note.id = `note-${Date.now()}`
@@ -21,14 +29,14 @@ class App extends Component {
 
     const notes = {...this.state.notes}
     notes[note.id] = note
-    this.setState({ notes})
-
+    this.setState({ notes })
   }
+
 
   render() {
     return (
       <div className="App">
-        <Main notes={this.state.notes} saveNote={this.saveNote} />
+        <Main notes={this.state.notes} saveNote={this.saveNote} deleteNote={this.deleteNote} ref='main'/>
       </div>
     );
   }
